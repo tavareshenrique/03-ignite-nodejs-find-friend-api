@@ -29,6 +29,7 @@ CREATE TABLE "pets" (
     "energy_level" "Levels" NOT NULL,
     "environment" "PetEnvironment" NOT NULL,
     "adoption_requirements" TEXT[],
+    "adopted_in" TIMESTAMP(3),
     "organization_id" TEXT NOT NULL,
 
     CONSTRAINT "pets_pkey" PRIMARY KEY ("id")
@@ -47,6 +48,12 @@ CREATE TABLE "organizations" (
 
     CONSTRAINT "organizations_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "organizations_email_key" ON "organizations"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "organizations_whatsapp_key" ON "organizations"("whatsapp");
 
 -- AddForeignKey
 ALTER TABLE "photos" ADD CONSTRAINT "photos_pet_id_fkey" FOREIGN KEY ("pet_id") REFERENCES "pets"("id") ON DELETE SET NULL ON UPDATE CASCADE;

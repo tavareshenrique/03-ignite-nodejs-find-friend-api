@@ -53,6 +53,7 @@ model Pet {
   energy_level          Levels
   environment           PetEnvironment
   adoption_requirements String[]
+  adopted_in            DateTime?
 
   photos Photo[]
 
@@ -66,10 +67,10 @@ model Organization {
   id            String @id @default(uuid())
   name          String
   owner         String
-  email         String
+  email         String @unique
   zipcode       String
   address       String
-  whatsapp      String
+  whatsapp      String @unique
   password_hash String
 
   pets Pet[]
