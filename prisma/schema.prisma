@@ -70,7 +70,9 @@ model Organization {
   email         String @unique
   zipcode       String
   address       String
-  whatsapp      String @unique
+  city          String
+  uf            String
+  whatsapp      String
   password_hash String
 
   pets Pet[]
