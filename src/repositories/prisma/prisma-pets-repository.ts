@@ -4,7 +4,7 @@ import { prisma } from '@/lib/prisma'
 
 import { PetRepository } from '../pets-repository'
 
-export class PrismaCheckInsRepository implements PetRepository {
+export class PrismaPetsRepository implements PetRepository {
 	async findById(id: string) {
 		const pet = prisma.pet.findUnique({
 			where: {
