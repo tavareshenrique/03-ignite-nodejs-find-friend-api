@@ -4,6 +4,7 @@ export interface PetRepository {
 	findById(id: string): Promise<Pet | null>
 	findMany(
 		city: string,
+		uf: string,
 		breed?: string,
 		age?: PetAge,
 		size?: Levels,
