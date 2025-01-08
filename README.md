@@ -1,6 +1,7 @@
 ### Regras da aplicação
 
 [] Deve ser possível cadastrar um pet
+- Campos:
    - Nome do Pet -> Name : String
 	 - Raça -> Breed : String
 	 - Sobre -> About : String
@@ -12,10 +13,12 @@
 	 - Fotos -> Photos : Array(String)
 	 - Requisitos para Adoção -> AdoptionRequirements : Array(String)
 	 - ORG -> Org : String
+
 [] Deve ser possível listar todos os pets disponíveis para adoção em uma cidade
 [] Deve ser possível filtrar pets por suas características
 [] Deve ser possível visualizar detalhes de um pet para adoção
 [] Deve ser possível se cadastrar como uma ORG
+- Campos:
    - Nome -> Name : String
 	 - Nome do Responsável -> ResponsibleName : String
 	 - Email -> Email : String
@@ -23,6 +26,7 @@
 	 - Endereço -> Address : String
 	 - WhatsApp -> WhatsApp : String
 	 - Senha -> Password : String
+
 [] Deve ser possível realizar login como uma ORG
 
 ### Regras de negócio
