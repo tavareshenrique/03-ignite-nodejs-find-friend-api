@@ -6,16 +6,36 @@ import { PetRepository } from '../pets-repository'
 
 export class PrismaPetsRepository implements PetRepository {
 	async findById(id: string) {
-		const pet = prisma.pet.findUnique({
+		const pet = await prisma.pet.findUnique({
 			where: {
 				id,
+			},
+			select: {
+				id: true,
+				name: true,
+				breed: true,
+				age: true,
+				size: true,
+				independence_level: true,
+				energy_level: true,
+				environment: true,
+				adopted_in: true,
+				organization_id: false,
+				organization: {
+					select: {
+						id: true,
+						name: true,
+						city: true,
+						uf: true,
+					},
+				},
 			},
 		})
 
 		return pet
 	}
 
-	findMany(
+	async findMany(
 		city: string,
 		uf: string,
 		breed?: string,
@@ -25,7 +45,7 @@ export class PrismaPetsRepository implements PetRepository {
 		energy_level?: Levels,
 		environment?: PetEnvironment,
 	): Promise<Pet[] | null> {
-		const pets = prisma.pet.findMany({
+		const pets = await prisma.pet.findMany({
 			where: {
 				breed,
 				age,
@@ -37,6 +57,14 @@ export class PrismaPetsRepository implements PetRepository {
 				organization: {
 					city,
 					uf,
+				},
+			},
+			include: {
+				organization: {
+					select: {
+						city: true,
+						uf: true,
+					},
 				},
 			},
 		})
