@@ -1,6 +1,4 @@
-import { Pet } from '@prisma/client'
-
-import { PetRepository } from '@/repositories/pets-repository'
+import { Pet, PetRepository } from '@/repositories/pets-repository'
 
 interface ICheckInUseCaseRequest {
 	petId: string
