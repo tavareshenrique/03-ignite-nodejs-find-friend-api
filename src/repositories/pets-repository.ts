@@ -1,4 +1,11 @@
-import { Levels, Pet, PetAge, PetEnvironment } from '@prisma/client'
+import {
+	Levels,
+	Pet as PrismaPet,
+	PetAge,
+	PetEnvironment,
+} from '@prisma/client'
+
+export type Pet = Omit<PrismaPet | null, 'organization_id'>
 
 export interface PetRepository {
 	findById(id: string): Promise<Pet | null>
