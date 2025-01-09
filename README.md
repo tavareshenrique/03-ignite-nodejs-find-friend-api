@@ -16,7 +16,7 @@
 
 [] Deve ser possível listar todos os pets disponíveis para adoção em uma cidade
 [] Deve ser possível filtrar pets por suas características
-[] Deve ser possível visualizar detalhes de um pet para adoção
+[X] Deve ser possível visualizar detalhes de um pet para adoção
 [] Deve ser possível se cadastrar como uma ORG
 - Campos:
    - Nome -> Name : String
