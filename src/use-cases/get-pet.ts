@@ -10,7 +10,7 @@ interface PetUseCaseResponse {
 	pet: Pet
 }
 
-export class PetUseCase {
+export class GetPetUseCase {
 	constructor(private readonly petsRepository: PetRepository) {}
 
 	async execute({
