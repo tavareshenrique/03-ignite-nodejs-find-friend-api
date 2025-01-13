@@ -14,12 +14,14 @@ export class PrismaPetsRepository implements PetRepository {
 				id: true,
 				name: true,
 				breed: true,
+				about: true,
 				age: true,
 				size: true,
 				independence_level: true,
 				energy_level: true,
 				environment: true,
 				adopted_in: true,
+				adoption_requirements: true,
 				organization_id: false,
 				organization: {
 					select: {
