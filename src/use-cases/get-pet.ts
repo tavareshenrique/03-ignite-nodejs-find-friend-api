@@ -1,5 +1,7 @@
 import { Pet, PetRepository } from '@/repositories/pets-repository'
 
+import { NotFoundError } from './errors/resource-not-found-error'
+
 interface ICheckInUseCaseRequest {
 	petId: string
 }
@@ -17,7 +19,7 @@ export class PetUseCase {
 		const pet = await this.petsRepository.findById(petId)
 
 		if (!pet) {
-			throw new Error('Pet not found')
+			throw new NotFoundError('Pet')
 		}
 
 		return {
