@@ -13,16 +13,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Levels {
+enum PetSize {
   SMALL
   MEDIUM
   LARGE
 }
 
+enum PetLevels {
+  LOW
+  MEDIUM
+  HIGH
+}
+
 enum PetAge {
   PUPPY
   ADULT
-  ELDERLY
+  SENIOR
 }
 
 enum PetEnvironment {
@@ -48,9 +54,9 @@ model Pet {
   breed                 String
   about                 String
   age                   PetAge
-  size                  Levels
-  independence_level    Levels
-  energy_level          Levels
+  size                  PetSize
+  independence_level    PetLevels
+  energy_level          PetLevels
   environment           PetEnvironment
   adoption_requirements String[]
   adopted_in            DateTime?
