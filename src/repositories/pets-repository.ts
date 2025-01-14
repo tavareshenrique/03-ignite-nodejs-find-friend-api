@@ -1,8 +1,9 @@
 import {
-	Levels,
 	Pet as PrismaPet,
 	PetAge,
 	PetEnvironment,
+	PetLevels,
+	PetSize,
 } from '@prisma/client'
 
 export type Pet = Omit<PrismaPet, 'organization_id'>
@@ -14,9 +15,9 @@ export interface PetRepository {
 		uf: string,
 		breed?: string,
 		age?: PetAge,
-		size?: Levels,
-		independence_level?: Levels,
-		energy_level?: Levels,
+		size?: PetSize,
+		independence_level?: PetLevels,
+		energy_level?: PetLevels,
 		environment?: PetEnvironment,
 	): Promise<Pet[] | null>
 	create(pet: Omit<PrismaPet, 'id'>): Promise<Pet>
