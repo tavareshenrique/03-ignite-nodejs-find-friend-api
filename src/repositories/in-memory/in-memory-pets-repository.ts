@@ -1,3 +1,5 @@
+import { randomUUID } from 'node:crypto'
+
 import { Levels, PetAge, PetEnvironment } from '@prisma/client'
 
 import { Pet, PetRepository } from '../pets-repository'
@@ -54,5 +56,16 @@ export class InMemoryPetsRepository implements PetRepository {
 		})
 
 		return Promise.resolve(pets)
+	}
+
+	async create(pet: Omit<Pet, 'id'>): Promise<Pet> {
+		const newPet = {
+			...pet,
+			id: randomUUID(),
+		}
+
+		this.pets.push(newPet)
+
+		return newPet
 	}
 }
