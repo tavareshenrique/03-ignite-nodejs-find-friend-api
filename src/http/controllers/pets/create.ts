@@ -8,11 +8,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
 		name: z.string(),
 		about: z.string(),
 		breed: z.string(),
-		age: z.union([
-			z.literal('PUPPY'),
-			z.literal('ADULT'),
-			z.literal('ELDERLY'),
-		]),
+		age: z.union([z.literal('PUPPY'), z.literal('ADULT'), z.literal('SENIOR')]),
 		adopted_in: z.date().nullable(),
 		size: z.union([
 			z.literal('SMALL'),
@@ -20,9 +16,9 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
 			z.literal('LARGE'),
 		]),
 		energy_level: z.union([
-			z.literal('SMALL'),
+			z.literal('LOW'),
 			z.literal('MEDIUM'),
-			z.literal('LARGE'),
+			z.literal('HIGH'),
 		]),
 		environment: z.union([
 			z.literal('APARTMENT'),
@@ -30,9 +26,9 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
 			z.literal('LARGE_ENVIRONMENT'),
 		]),
 		independence_level: z.union([
-			z.literal('SMALL'),
+			z.literal('LOW'),
 			z.literal('MEDIUM'),
-			z.literal('LARGE'),
+			z.literal('HIGH'),
 		]),
 		adoption_requirements: z.array(z.string()),
 		organization_id: z.string(),
