@@ -19,4 +19,5 @@ export interface PetRepository {
 		energy_level?: Levels,
 		environment?: PetEnvironment,
 	): Promise<Pet[] | null>
+	create(pet: Omit<PrismaPet, 'id'>): Promise<Pet>
 }
