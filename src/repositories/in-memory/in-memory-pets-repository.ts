@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto'
 
-import { Levels, PetAge, PetEnvironment } from '@prisma/client'
+import { PetAge, PetEnvironment, PetLevels, PetSize } from '@prisma/client'
 
 import { Pet, PetRepository } from '../pets-repository'
 
@@ -22,9 +22,9 @@ export class InMemoryPetsRepository implements PetRepository {
 		uf: string,
 		breed?: string,
 		age?: PetAge,
-		size?: Levels,
-		independence_level?: Levels,
-		energy_level?: Levels,
+		size?: PetSize,
+		independence_level?: PetLevels,
+		energy_level?: PetLevels,
 		environment?: PetEnvironment,
 	): Promise<Pet[] | null> {
 		const pets = this.pets.filter((pet) => {
