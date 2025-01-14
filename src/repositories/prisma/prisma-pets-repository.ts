@@ -1,8 +1,13 @@
-import { Levels, Pet, PetAge, PetEnvironment } from '@prisma/client'
+import {
+	Levels,
+	Pet as PrismaPet,
+	PetAge,
+	PetEnvironment,
+} from '@prisma/client'
 
 import { prisma } from '@/lib/prisma'
 
-import { PetRepository } from '../pets-repository'
+import { Pet, PetRepository } from '../pets-repository'
 
 export class PrismaPetsRepository implements PetRepository {
 	async findById(id: string) {
@@ -72,5 +77,13 @@ export class PrismaPetsRepository implements PetRepository {
 		})
 
 		return pets
+	}
+
+	async create(pet: Omit<PrismaPet, 'id'>): Promise<Pet> {
+		const createdPet = await prisma.pet.create({
+			data: pet,
+		})
+
+		return createdPet
 	}
 }
