@@ -1,8 +1,9 @@
 import {
-	Levels,
 	Pet as PrismaPet,
 	PetAge,
 	PetEnvironment,
+	PetLevels,
+	PetSize,
 } from '@prisma/client'
 
 import { prisma } from '@/lib/prisma'
@@ -47,9 +48,9 @@ export class PrismaPetsRepository implements PetRepository {
 		uf: string,
 		breed?: string,
 		age?: PetAge,
-		size?: Levels,
-		independence_level?: Levels,
-		energy_level?: Levels,
+		size?: PetSize,
+		independence_level?: PetLevels,
+		energy_level?: PetLevels,
 		environment?: PetEnvironment,
 	): Promise<Pet[] | null> {
 		const pets = await prisma.pet.findMany({
