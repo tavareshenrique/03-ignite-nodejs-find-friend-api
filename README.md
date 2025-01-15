@@ -5,7 +5,7 @@
    - Nome do Pet -> Name : String
 	 - Raça -> Breed : String
 	 - Sobre -> About : String
-	 - Idade (Filhote, Adulto, Idoso) -> Age : Enum('Puppy', 'Adult', 'Elderly')
+	 - Idade (Filhote, Adulto, Idoso) -> Age : Enum('Puppy', 'Adult', 'Senior')
 	 - Porte (Pequeno, Médio, Grande) -> Size : Enum('Small', 'Medium', 'Large')
 	 - Nível de Independência (Baixo, Médio, Alto) -> IndependenceLevel : Enum('Low', 'Medium', 'High')
 	 - Nível de Energia (Baixo, Médio, Alto) -> EnergyLevel : Enum('Low', 'Medium', 'High')
