@@ -2,8 +2,10 @@ import '@fastify/jwt'
 
 declare module '@fastify/jwt' {
 	interface FastifyJWT {
-		organization: {
-			sub: string
+		user: {
+			organization: {
+				sub: string
+			}
 		}
 	}
 }
