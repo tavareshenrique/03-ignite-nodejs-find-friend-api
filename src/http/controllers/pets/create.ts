@@ -31,7 +31,6 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
 			z.literal('HIGH'),
 		]),
 		adoption_requirements: z.array(z.string()),
-		organization_id: z.string(),
 	})
 
 	const {
@@ -45,7 +44,6 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
 		environment,
 		independence_level,
 		adoption_requirements,
-		organization_id,
 	} = createPetParamsSchema.parse(request.body)
 
 	const createPetUseCase = makeCreatePetUseCase()
@@ -61,7 +59,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
 		environment,
 		independence_level,
 		adoption_requirements,
-		organization_id,
+		organization_id: request.user.organization.sub,
 	})
 
 	reply.status(201).send({
