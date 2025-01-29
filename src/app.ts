@@ -1,5 +1,6 @@
 import fastifyCookie from '@fastify/cookie'
 import fastifyJwt from '@fastify/jwt'
+import multipart from '@fastify/multipart'
 import fastify from 'fastify'
 import { ZodError } from 'zod'
 
@@ -17,6 +18,12 @@ app.register(fastifyJwt, {
 	},
 	sign: {
 		expiresIn: '10m',
+	},
+})
+
+app.register(multipart, {
+	limits: {
+		fileSize: 10 * 1024 * 1024, // 10 MB
 	},
 })
 
