@@ -92,6 +92,33 @@ export class PrismaPetsRepository implements PetRepository {
 	async create(pet: Omit<PrismaPet, 'id'>): Promise<Pet> {
 		const createdPet = await prisma.pet.create({
 			data: pet,
+			select: {
+				id: true,
+				name: true,
+				breed: true,
+				about: true,
+				age: true,
+				size: true,
+				independence_level: true,
+				energy_level: true,
+				environment: true,
+				adoption_requirements: true,
+				adopted_in: true,
+				organization_id: false,
+				organization: {
+					select: {
+						id: true,
+						name: true,
+						owner: true,
+						email: true,
+						whatsapp: true,
+						address: true,
+						zipcode: true,
+						city: true,
+						uf: true,
+					},
+				},
+			},
 		})
 
 		return createdPet
