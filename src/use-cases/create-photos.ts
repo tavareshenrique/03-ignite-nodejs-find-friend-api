@@ -20,10 +20,10 @@ export class CreatePhotosUseCase {
 		photos,
 	}: CreatePhotoUseCaseRequest): Promise<CreatePhotoUseCaseResponse> {
 		const photosData = await Promise.all(
-			photos.map(async (photo) => {
+			photos.map(async (photoUrl) => {
 				return this.photosRepository.create({
 					petId,
-					url: photo,
+					url: photoUrl,
 				})
 			}),
 		)
