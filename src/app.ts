@@ -1,6 +1,9 @@
+import path from 'node:path'
+
 import fastifyCookie from '@fastify/cookie'
 import fastifyJwt from '@fastify/jwt'
 import multipart from '@fastify/multipart'
+import fastifyStatic from '@fastify/static'
 import fastify from 'fastify'
 import { ZodError } from 'zod'
 
@@ -25,6 +28,11 @@ app.register(multipart, {
 	limits: {
 		fileSize: 10 * 1024 * 1024, // 10 MB
 	},
+})
+
+app.register(fastifyStatic, {
+	root: path.join(process.cwd(), '.uploads'),
+	prefix: '/.uploads/',
 })
 
 app.register(fastifyCookie)
