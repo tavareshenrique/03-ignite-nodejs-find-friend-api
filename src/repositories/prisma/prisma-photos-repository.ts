@@ -1,3 +1,4 @@
+import { env } from '@/env'
 import { prisma } from '@/lib/prisma'
 
 import {
@@ -17,7 +18,7 @@ export class PrismaPhotosRepository implements PhotosRepository {
 
 		return {
 			id: photos.id,
-			url: photos.url,
+			url: `${env.IMAGE_URL}${photos.url}`,
 		}
 	}
 }
