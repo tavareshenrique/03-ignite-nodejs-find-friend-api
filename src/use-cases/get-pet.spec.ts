@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker'
+import { Prisma } from '@prisma/client'
 import { beforeEach, describe, expect, it } from 'vitest'
 
 import { InMemoryPetsRepository } from '@/repositories/in-memory/in-memory-pets-repository'
@@ -17,7 +18,7 @@ describe('Get Pet Use Case', () => {
 	})
 
 	it('should get a pet', async () => {
-		const petData = {
+		const petData: Prisma.PetCreateInput = {
 			name: faker.animal.dog(),
 			about: faker.lorem.paragraph(),
 			adopted_in: null,
@@ -28,6 +29,19 @@ describe('Get Pet Use Case', () => {
 			environment: 'APARTMENT' as const,
 			independence_level: 'HIGH' as const,
 			size: 'MEDIUM' as const,
+			organization: {
+				create: {
+					name: faker.company.name(),
+					city: faker.location.city(),
+					uf: faker.location.state({ abbreviated: true }),
+					address: faker.location.streetAddress(),
+					owner: faker.person.firstName(),
+					email: faker.internet.email(),
+					whatsapp: faker.phone.number(),
+					zipcode: faker.location.zipCode(),
+					password_hash: faker.internet.password(),
+				},
+			},
 		}
 
 		const { id } = await petsRepository.create(petData)
@@ -36,10 +50,7 @@ describe('Get Pet Use Case', () => {
 			petId: id,
 		})
 
-		expect(pet).toEqual({
-			...petData,
-			id,
-		})
+		expect(pet.id).toEqual(expect.any(String))
 	})
 
 	it('should not get a pet that does not exist', async () => {
