@@ -4,6 +4,7 @@ import {
 	PetEnvironment,
 	PetLevels,
 	PetSize,
+	Prisma,
 } from '@prisma/client'
 
 export type Pet = Omit<PrismaPet, 'organization_id'>
@@ -31,5 +32,5 @@ export interface PetRepository {
 		energy_level,
 		environment,
 	}: FindManyParams): Promise<Pet[] | null>
-	create(pet: Omit<PrismaPet, 'id'>): Promise<Pet>
+	create(pet: Prisma.PetCreateInput): Promise<Pet>
 }
