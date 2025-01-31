@@ -1,10 +1,10 @@
 import { PrismaOrganizationRepository } from '@/repositories/prisma/prisma-organizations-repository'
 
-import { CreatePetUseCase } from '../create-organization'
+import { CreateOrganizationUseCase } from '../create-organization'
 
 export function makeCreateOrganizationUseCase() {
 	const organizationRepository = new PrismaOrganizationRepository()
-	const useCase = new CreatePetUseCase(organizationRepository)
+	const useCase = new CreateOrganizationUseCase(organizationRepository)
 
 	return useCase
 }
