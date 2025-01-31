@@ -17,16 +17,23 @@ export class InMemoryPetsRepository implements PetRepository {
 		return pet
 	}
 
-	async findMany(
-		city: string,
-		uf: string,
-		breed?: string,
-		age?: PetAge,
-		size?: PetSize,
-		independence_level?: PetLevels,
-		energy_level?: PetLevels,
-		environment?: PetEnvironment,
-	): Promise<Pet[] | null> {
+	async findMany({
+		breed,
+		age,
+		size,
+		independence_level,
+		energy_level,
+		environment,
+	}: {
+		city: string
+		uf: string
+		breed?: string
+		age?: PetAge
+		size?: PetSize
+		independence_level?: PetLevels
+		energy_level?: PetLevels
+		environment?: PetEnvironment
+	}): Promise<Pet[]> {
 		const pets = this.pets.filter((pet) => {
 			if (breed && pet.breed !== breed) {
 				return false
@@ -55,7 +62,7 @@ export class InMemoryPetsRepository implements PetRepository {
 			return true
 		})
 
-		return Promise.resolve(pets)
+		return pets
 	}
 
 	async create(pet: Omit<Pet, 'id'>): Promise<Pet> {
