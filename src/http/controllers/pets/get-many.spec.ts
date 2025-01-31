@@ -1,10 +1,9 @@
-import { faker } from '@faker-js/faker'
-import FormData from 'form-data'
 import request from 'supertest'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
 import { app } from '@/app'
 import { createAndAuthenticateUser } from '@/utils/test/create-and-authenticate-user'
+import { createPet } from '@/utils/test/create-pet'
 
 describe('Get Many Pets', () => {
 	beforeAll(async () => {
@@ -18,37 +17,7 @@ describe('Get Many Pets', () => {
 	it('should retrieve multiple pets based on query parameters', async () => {
 		const { token, address } = await createAndAuthenticateUser(app)
 
-		const pet = {
-			name: faker.animal.dog(),
-			about: faker.lorem.paragraph(),
-			adoption_requirements: [faker.lorem.paragraph(), faker.lorem.paragraph()],
-			age: 'SENIOR',
-			breed: faker.animal.dog(),
-			energy_level: 'LOW',
-			environment: 'APARTMENT',
-			independence_level: 'HIGH',
-			size: 'MEDIUM',
-			organization_id: faker.string.uuid(),
-		}
-
-		const form = new FormData()
-
-		const formHeaders = form.getHeaders()
-
-		await request(app.server)
-			.post('/pets')
-			.set('Authorization', `Bearer ${token}`)
-			.set(formHeaders)
-			.field('name', pet.name)
-			.field('about', pet.about)
-			.field('adoption_requirements', JSON.stringify(pet.adoption_requirements))
-			.field('age', pet.age)
-			.field('breed', pet.breed)
-			.field('energy_level', pet.energy_level)
-			.field('environment', pet.environment)
-			.field('independence_level', pet.independence_level)
-			.field('size', pet.size)
-			.field('organization_id', pet.organization_id)
+		await createPet(app, token)
 
 		const response = await request(app.server)
 			.get('/pets')
