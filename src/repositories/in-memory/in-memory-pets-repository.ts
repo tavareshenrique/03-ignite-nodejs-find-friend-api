@@ -1,6 +1,12 @@
 import { randomUUID } from 'node:crypto'
 
-import { PetAge, PetEnvironment, PetLevels, PetSize } from '@prisma/client'
+import {
+	PetAge,
+	PetEnvironment,
+	PetLevels,
+	PetSize,
+	Prisma,
+} from '@prisma/client'
 
 import { Pet, PetRepository } from '../pets-repository'
 
@@ -25,8 +31,6 @@ export class InMemoryPetsRepository implements PetRepository {
 		energy_level,
 		environment,
 	}: {
-		city: string
-		uf: string
 		breed?: string
 		age?: PetAge
 		size?: PetSize
@@ -65,10 +69,21 @@ export class InMemoryPetsRepository implements PetRepository {
 		return pets
 	}
 
-	async create(pet: Omit<Pet, 'id'>): Promise<Pet> {
+	async create(pet: Prisma.PetCreateInput): Promise<Pet> {
 		const newPet = {
-			...pet,
 			id: randomUUID(),
+			about: pet.about,
+			adopted_in: null,
+			adoption_requirements: Array.isArray(pet.adoption_requirements)
+				? pet.adoption_requirements
+				: [],
+			age: pet.age,
+			breed: pet.breed,
+			energy_level: pet.energy_level,
+			environment: pet.environment,
+			independence_level: pet.independence_level,
+			name: pet.name,
+			size: pet.size,
 		}
 
 		this.pets.push(newPet)
