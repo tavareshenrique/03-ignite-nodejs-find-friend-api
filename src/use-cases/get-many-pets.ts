@@ -43,8 +43,8 @@ export class GetManyPetsUseCase {
 			size,
 		})
 
-		if (!pets) {
-			throw new NotFoundError("Pet's")
+		if (!pets || pets.length === 0) {
+			throw new NotFoundError('Pet')
 		}
 
 		return {
