@@ -21,7 +21,7 @@ interface CreateOrganizationUseCaseResponse {
 	organization: Organization
 }
 
-export class CreatePetUseCase {
+export class CreateOrganizationUseCase {
 	constructor(
 		private readonly organizationsRepository: OrganizationsRepository,
 	) {}
