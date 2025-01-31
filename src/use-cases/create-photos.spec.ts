@@ -5,14 +5,14 @@ import { InMemoryPhotosRepository } from '@/repositories/in-memory/in-memory-pho
 
 import { CreatePhotosUseCase } from './create-photos'
 
-let organizationsRepository: InMemoryPhotosRepository
+let photosRepository: InMemoryPhotosRepository
 let sut: CreatePhotosUseCase
 
 describe('Create Photos Case', () => {
 	beforeEach(() => {
-		organizationsRepository = new InMemoryPhotosRepository()
+		photosRepository = new InMemoryPhotosRepository()
 
-		sut = new CreatePhotosUseCase(organizationsRepository)
+		sut = new CreatePhotosUseCase(photosRepository)
 	})
 
 	it('should be able to add photos', async () => {
