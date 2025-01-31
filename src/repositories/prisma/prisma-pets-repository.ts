@@ -1,9 +1,9 @@
 import {
-	Pet as PrismaPet,
 	PetAge,
 	PetEnvironment,
 	PetLevels,
 	PetSize,
+	Prisma,
 } from '@prisma/client'
 
 import { prisma } from '@/lib/prisma'
@@ -89,7 +89,7 @@ export class PrismaPetsRepository implements PetRepository {
 		return pets
 	}
 
-	async create(pet: Omit<PrismaPet, 'id'>): Promise<Pet> {
+	async create(pet: Prisma.PetCreateInput): Promise<Pet> {
 		const createdPet = await prisma.pet.create({
 			data: pet,
 			select: {
