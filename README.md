@@ -44,7 +44,7 @@ git clone https://github.com/tavareshenrique/03-ignite-nodejs-find-friend-api.gi
 > **1.1.** Instale as dependências:
 
 ```bash
-pnpm
+pnpm install
 ```
 
 > **1.2.** Crie a .env a partir da .env.example
